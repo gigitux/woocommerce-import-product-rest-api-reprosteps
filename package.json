@@ -1,6 +1,12 @@
 {
   "dependencies": {
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
+    "@wordpress/env": "^4.6.0",
     "axios": "^0.27.2"
+  },
+  "scripts": {
+    "wp-env": "wp-env",
+    "wp-env:config": "./bin/wp-env-pre-config.sh",
+    "import-products": "./bin/wp-env-pre-config.sh && node index.js"
   }
 }

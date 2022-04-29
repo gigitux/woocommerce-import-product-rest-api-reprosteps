@@ -4,5 +4,6 @@ To run this script:
 
 ```
 npm install
-baseUrl=http://website-url/ consumerKey=consumerKey consumerSecret=consumerSecret username=username password=username node index.js
+npm run wp-env start
+npm run import-products
 ```

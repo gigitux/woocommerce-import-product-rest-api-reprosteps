@@ -4,14 +4,6 @@
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 const axios = require("axios").default;
 
-const baseUrl = process.env.baseUrl;
-
-console.log(baseUrl);
-const consumerKey = process.env.consumerKey;
-const consumerSecret = process.env.consumerSecret;
-const username = process.env.username;
-const password = process.env.password;
-
 /**
  * The default fixtures data is shaped according to WC REST API
  *
@@ -423,14 +415,14 @@ module.exports = {
  * not providing them will throw an error.
  */
 const WooCommerce = new WooCommerceRestApi({
-  url: baseUrl,
-  consumerKey, // Your consumer key
-  consumerSecret, // Your consumer secret
+  url: "http://localhost:8889",
+  consumerKey: "consumer_key", // Your consumer key
+  consumerSecret: "consumer_secret", // Your consumer secret
   version: "wc/v3",
   axiosConfig: {
     auth: {
-      username,
-      password,
+      username: "admin",
+      password: "password",
     },
   },
 });
@@ -446,7 +438,11 @@ const WooCommerce = new WooCommerceRestApi({
 const createTaxes = (fixture = Taxes()) =>
   WooCommerce.post("taxes/batch", {
     create: fixture,
-  }).then((response) => response.data.create.map((taxes) => taxes.id));
+  })
+    .then((response) => {
+      response.data.create.map((taxes) => taxes.id);
+    })
+    .catch(console.log);
 
 /**
  * Create Coupons.
@@ -706,6 +702,7 @@ const createProductAttributes = (fixture = Attributes()) => {
     createProductAttributes(),
     enablePaymentGateways(),
   ]).catch(console.log);
+
   const [taxes, coupons, categories, tags, shippingZones, attributes] = results;
   // Create products after categories.
 
