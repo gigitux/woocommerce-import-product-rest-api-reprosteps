@@ -1,0 +1,8 @@
+This is a script for import products on WooCommerce website. This is script is useful for reproduce [woocommerce/#32065](https://github.com/woocommerce/woocommerce/issues/32065).
+
+To run this script:
+
+```
+npm install
+baseUrl=http://website-url/ consumerKey=consumerKey consumerSecret=consumerSecret username=username password=username node index.js
+```
